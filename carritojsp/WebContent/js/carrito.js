@@ -9,7 +9,13 @@ $(function(){
 			data: {idproducto:idproducto},
 			success: function(r){
 				elemento.parent().parent().remove();
+				var elementostabla = $('#shop-table tr');
+				if(elementostabla.length <= 1){
+					$('#cart-container').append("<h4>No hay Articulos en el carro</h4>")
+				}
+				$('#txt-subtotal').text(r);
+				$('#txt-total').text(r);
 			}
-		})
-	})
-})
+		});
+	});
+});

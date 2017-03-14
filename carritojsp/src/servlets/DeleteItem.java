@@ -11,6 +11,8 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import classes.Articulo;
+import classes.Producto;
+import controllers.ControladorProducto;
 
 /**
  * Servlet implementation class DeleteItem
@@ -45,6 +47,15 @@ public class DeleteItem extends HttpServlet {
 				}
 			}
 		}
+		
+		double total = 0;
+		ControladorProducto cp = new ControladorProducto();
+		for(Articulo a:articulos){
+			Producto producto = cp.getProducto(a.getIdProducto());
+			total += a.getCantidad() * producto.getPrecio();
+		}
+	
+		response.getWriter().print(Math.round(total * 100.0) /100.0);
 	
 	}
 

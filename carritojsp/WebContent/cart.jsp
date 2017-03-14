@@ -161,8 +161,8 @@
 				  <li class="active">Shopping Cart</li>
 				</ol>
 			</div>
-			<div class="table-responsive cart_info">
-				<table class="table table-condensed">
+			<div class="table-responsive cart_info" id="cart-container">
+				<table class="table table-condensed" id="shop-table">
 					<thead>
 						<tr class="cart_menu">
 							<td class="image">Item</td>
@@ -177,6 +177,7 @@
 						<%
 							ControladorProducto cp = new ControladorProducto();
 							double total = 0;
+							if(articulos != null){
 							for(Articulo a: articulos){
 								Producto producto = cp.getProducto(a.getIdProducto());
 								total += a.getCantidad() * producto.getPrecio();
@@ -209,7 +210,7 @@
 								</td>
 							</tr>
 						
-						<% } %>
+						<% } }%>
 					</tbody>
 				</table>
 			</div>
@@ -281,10 +282,10 @@
 				<div class="col-sm-6">
 					<div class="total_area">
 						<ul>
-							<li>Cart Sub Total <span>$<%= Math.round(total * 100.0)/100 %></span></li>
+							<li>Cart Sub Total <span id="txt-subtotal">$<%= Math.round(total * 100.0)/100 %></span></li>
 							<li>Eco Tax <span>$0.0</span></li>
 							<li>Shipping Cost <span>Free</span></li>
-							<li>Total <span>$<%= Math.round(total * 100.0)/100 %></span></li>
+							<li>Total <span id="txt-total">$<%= Math.round(total * 100.0)/100 %></span></li>
 						</ul>
 							<a class="btn btn-default update" href="">Update</a>
 							<a class="btn btn-default check_out" href="">Check Out</a>
